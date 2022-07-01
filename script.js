@@ -5,18 +5,21 @@ generateEl.addEventListener('click', function() {
   setPassword();
 });
 
-var passwordEl = document.querySelector("#password");
+var passwordEl = document.getElementById("#password");
 
 
+//set password prompts
 function setPassword() {
   var length = Number(prompt("Choose how many characters, between 8 and 128."));
     window.confirm('You choose ' + length + '.')
 
 var charType = prompt("Choose a character type: lowercase, uppercase, numeric, special.");
     window.confirm('You choose ' + charType + '.')
-//generate password
+
+
+//generate random password function
 function generatePassword() {
-  //evaluate character type
+  //determine character type
   var charSet = "";
   var charTypeSet = charType.toLowerCase();
   if( charTypeSet === "lowercase" ) {
@@ -31,20 +34,13 @@ function generatePassword() {
   //return value
   var retVal = "";
   for (var i = 0; i < length; i++) {
-    //picks a character within charSet at index of random number
     retVal += charSet.charAt(Math.floor(Math.random() * charSet.length));
   }
   return retVal;
 }
-window.alert(generatePassword());
+window.confirm(generatePassword());
+document.getElementById('password').innerHTML=(generatePassword());
+
 
 }
 
-function writePassword() {
-  passwordEl.textContent = retVal;
-    var password = generatePassword();
-    var passwordText = document.querySelector("#password");
-
-    passwordText.value = password;
-
-}
